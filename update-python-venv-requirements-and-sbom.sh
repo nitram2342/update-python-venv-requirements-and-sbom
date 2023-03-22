@@ -32,6 +32,11 @@ for TEST_VENV_DIR in "${BASE_DIR}/VENV" "${BASE_DIR}/venv" "${BASE_DIR}/ENV" "${
     fi
 done
 
+if [ ! -d "${VENV_DIR}" ] ; then
+    echo "VENV directory does not exists or was not found. Stopping here."
+    exit 1
+fi
+
 echo "Found VENV directory ${VENV_DIR}."
 . ${VENV_DIR}/bin/activate
 
