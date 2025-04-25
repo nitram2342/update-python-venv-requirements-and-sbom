@@ -8,7 +8,7 @@
 set -e
 
 BASE_DIR=$1
-CYCLONEDX_BOM_TOOL=~/.local/bin/cyclonedx-bom
+CYCLONEDX_BOM_TOOL=~/.local/bin/cyclonedx-py
 
 if [ -z "${BASE_DIR}" ] ; then
     echo "No base directory directory supplied. That is the directory that contains the VENV/virtualenv/venv dir. Stopping here."
@@ -48,7 +48,7 @@ echo "Updating requirements.txt."
 pip freeze > ${BASE_DIR}/requirements.txt.new
 echo "------------------------------------"
 echo "Generating new SBOM file"
-${CYCLONEDX_BOM_TOOL} -r -i ${BASE_DIR}/requirements.txt.new -o ${BASE_DIR}/cyclonedx-sbom.xml.new
+${CYCLONEDX_BOM_TOOL} requirements ${BASE_DIR}/requirements.txt.new -o ${BASE_DIR}/cyclonedx-sbom.xml.new
 
 echo "------------------------------------"
 echo Done. Now, please run:
